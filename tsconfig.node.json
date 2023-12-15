@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  },
+  "baseUrl": "./src",
+  "paths": {
+    "@components/*": ["./components/*"],
+    "@constants/*": ["./constants/*"],
+    "@interfaces/*": ["./interfaces/*"],
+    "@common/*": ["./common/*"],
+    "@hooks/*": ["./hooks/*"],
+    "@assets/*": ["./assets/*"],
+    "@pages/*": ["./pages/*"],
+    "@store": ["./store/*"]
+  },
+  "include": ["vite.config.ts"]
+}
