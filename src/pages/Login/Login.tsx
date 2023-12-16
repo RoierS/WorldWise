@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import PageNav from '../../components/PageNav/PageNav';
+import PageNav from '@components/PageNav/PageNav';
 
 import styles from './Login.module.css';
 
