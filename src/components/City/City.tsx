@@ -1,26 +1,25 @@
 import { formatDate } from '@/helpers/formatDate';
 
+import { ICity } from '@/interfaces/City';
+
 import ButtonBack from '../ButtonBack/ButtonBack';
 
 import styles from './City.module.css';
 
-interface ICity {
-  cityName: string;
-  emoji: string;
-  date: string;
-  notes: string;
+interface ICityProps {
+  city: ICity;
 }
 
-const City: React.FC = () => {
+const City = ({ city }: ICityProps) => {
   // TEMP DATA
-  const currentCity: ICity = {
-    cityName: 'Lisbon',
-    emoji: '🇵🇹',
-    date: '2027-10-31T15:59:59.138Z',
-    notes: 'My favorite city so far!',
-  };
+  // const currentCity: ICurrentCity = {
+  //   cityName: 'Lisbon',
+  //   emoji: '🇵🇹',
+  //   date: '2027-10-31T15:59:59.138Z',
+  //   notes: 'My favorite city so far!',
+  // };
 
-  const { cityName, emoji, date, notes } = currentCity;
+  const { cityName, emoji, date, notes } = city;
   return (
     <div className={styles.city}>
       <div className={styles.row}>
