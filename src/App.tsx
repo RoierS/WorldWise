@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import AppLayOut from './pages/AppLayout/AppLayOut';
+import AppLayOut from './pages/AppLayout/AppLayout';
 import Homepage from './pages/Homepage/Homepage';
 import Login from './pages/Login/Login';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
