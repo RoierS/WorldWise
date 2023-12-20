@@ -5,6 +5,9 @@ import { ICity } from '@/interfaces/City';
 export interface ICitiesContext {
   cities: ICity[];
   isLoading: boolean;
+  currentCity: ICity;
+  setCurrentCity: (city: ICity) => void;
+  getCurrentCity: (id: string) => void;
 }
 
 interface CitiesProviderProps {
@@ -18,6 +21,7 @@ const BASE_URL = 'http://localhost:9000';
 const CitiesProvider = ({ children }: CitiesProviderProps) => {
   const [cities, setCities] = useState([] as ICity[]);
   const [isLoading, setIsloading] = useState(false);
+  const [currentCity, setCurrentCity] = useState({} as ICity);
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -37,11 +41,27 @@ const CitiesProvider = ({ children }: CitiesProviderProps) => {
     fetchCities();
   }, []);
 
+  const getCurrentCity = async (id: string) => {
+    try {
+      setIsloading(true);
+      const res = await fetch(`${BASE_URL}/cities/${id}`);
+      const data = await res.json();
+      setCurrentCity(data);
+      setIsloading(false);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
+  };
+
   return (
     <CitiesContext.Provider
       value={{
         cities,
         isLoading,
+        currentCity,
+        setCurrentCity,
+        getCurrentCity,
       }}
     >
       {children}

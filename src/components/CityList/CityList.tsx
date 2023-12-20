@@ -1,7 +1,7 @@
-import { useCitiesProvider } from '@/hooks/useCitiesprovider';
+import Spinner from '@/components/Spinner/Spinner';
+import { useCitiesProvider } from '@/hooks/useCitiesProvider';
 
 import CityItem from '@components/CityItem/CityItem';
-import Spinner from '@components/Loader/Spinner';
 import Message from '@components/Message/Message';
 
 import styles from './CityList.module.css';

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
 import Button from '../Button/Button';
+
+import ButtonBack from '../ButtonBack/ButtonBack';
 
 import styles from './Form.module.css';
 
@@ -13,8 +13,6 @@ const Form: React.FC = () => {
   // const [country, setCountry] = useState('');
   const [date, setDate] = useState<DateType>(new Date());
   const [notes, setNotes] = useState('');
-
-  const navigate = useNavigate();
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newDate: DateType = e.target.value;
@@ -53,16 +51,8 @@ const Form: React.FC = () => {
 
       <div className={styles.buttons}>
         <Button purpose="primary">Add</Button>
-        <button>Add</button>
-        <Button
-          purpose="back"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate('..');
-          }}
-        >
-          &larr; Back
-        </Button>
+
+        <ButtonBack />
       </div>
     </form>
   );

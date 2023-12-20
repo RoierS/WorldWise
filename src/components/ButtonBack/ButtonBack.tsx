@@ -1,8 +1,19 @@
+import { useNavigate } from 'react-router-dom';
+
+import Button from '../Button/Button';
+
 const ButtonBack: React.FC = () => {
+  const navigate = useNavigate();
   return (
-    <div>
-      <button>Back Button</button>
-    </div>
+    <Button
+      purpose="back"
+      onClick={(e) => {
+        e.preventDefault();
+        navigate('..');
+      }}
+    >
+      &larr; Back
+    </Button>
   );
 };
 

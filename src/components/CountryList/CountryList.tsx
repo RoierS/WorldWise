@@ -1,8 +1,8 @@
-import { useCitiesProvider } from '@/hooks/useCitiesprovider';
+import Spinner from '@/components/Spinner/Spinner';
+import { useCitiesProvider } from '@/hooks/useCitiesProvider';
 
 import { ICountry } from '@/interfaces/Country';
 import CountryItem from '@components/CountryItem/CountryItem';
-import Spinner from '@components/Loader/Spinner';
 import Message from '@components/Message/Message';
 
 import styles from './CountryList.module.css';
