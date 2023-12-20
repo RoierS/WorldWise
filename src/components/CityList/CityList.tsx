@@ -1,19 +1,14 @@
-import { ICity } from '@/interfaces/City';
+import { useCitiesProvider } from '@/hooks/useCitiesprovider';
 
 import CityItem from '@components/CityItem/CityItem';
-
 import Spinner from '@components/Loader/Spinner';
-
 import Message from '@components/Message/Message';
 
 import styles from './CityList.module.css';
 
-interface ICityListProps {
-  cities: ICity[];
-  isLoading: boolean;
-}
+const CityList = () => {
+  const { cities, isLoading } = useCitiesProvider();
 
-const CityList = ({ cities, isLoading }: ICityListProps) => {
   if (isLoading) {
     return <Spinner />;
   }

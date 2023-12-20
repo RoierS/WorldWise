@@ -1,4 +1,4 @@
-import { ICity } from '@/interfaces/City';
+import { useCitiesProvider } from '@/hooks/useCitiesprovider';
 
 import { ICountry } from '@/interfaces/Country';
 import CountryItem from '@components/CountryItem/CountryItem';
@@ -7,12 +7,9 @@ import Message from '@components/Message/Message';
 
 import styles from './CountryList.module.css';
 
-interface ICountryListProps {
-  cities: ICity[];
-  isLoading: boolean;
-}
+const CountryList = () => {
+  const { cities, isLoading } = useCitiesProvider();
 
-const CountryList = ({ cities, isLoading }: ICountryListProps) => {
   // creates arr with non-duplicates country
   const countries = cities.reduce((acc: ICountry[], currCity) => {
     if (!acc.map((el) => el.country).includes(currCity.country))
