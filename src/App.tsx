@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
+import City from '@/components/City/City';
 import CityList from '@/components/CityList/CityList';
 import CountryList from '@/components/CountryList/CountryList';
+import Form from '@/components/Form/Form';
 
-import { ICity } from './interfaces/City';
+import { ICity } from '@/interfaces/City';
+
 import AppLayOut from './pages/AppLayout/AppLayout';
 import Homepage from './pages/Homepage/Homepage';
 import Login from './pages/Login/Login';
@@ -45,10 +48,12 @@ const App: React.FC = () => {
         <Route path="pricing" element={<Pricing />} />
         <Route path="login" element={<Login />} />
         <Route path="app" element={<AppLayOut />}>
-          <Route index element={<CityList cities={cities} isLoading={isLoading} />} />
+          <Route index element={<Navigate to="cities" replace={true} />} />
           <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
+          <Route path="cities/:id" element={<City />} />
+
           <Route path="countries" element={<CountryList cities={cities} isLoading={isLoading} />} />
-          <Route path="form" element={<p>Form</p>} />
+          <Route path="form" element={<Form />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
