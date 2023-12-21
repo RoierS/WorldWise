@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { LatLngTuple } from 'leaflet';
+import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from 'react-leaflet';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useCitiesProvider } from '@/hooks/useCitiesProvider';
@@ -10,18 +11,23 @@ import styles from './Map.module.css';
 const MAP_TOKEN = import.meta.env.VITE_MAP_TOKEN;
 
 const Map: React.FC = () => {
-  const navigate = useNavigate();
   const { cities } = useCitiesProvider();
 
-  const [mapPosition, setMapPosition] = useState<[number, number]>([40, 0]);
+  const [mapPosition, setMapPosition] = useState<LatLngTuple>([40, 0]);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // const lat = searchParams.get('lat');
-  // const lng = searchParams.get('lng');
+  // current coordinates
+  const lat = Number(searchParams.get('lat'));
+  const lng = Number(searchParams.get('lng'));
+
+  // move map when click on city in citylist
+  useEffect(() => {
+    if (lat && lng) setMapPosition([lat, lng]);
+  }, [lat, lng]);
 
   return (
     <div className={styles.mapContainer}>
-      <MapContainer className={styles.map} center={mapPosition} zoom={6} scrollWheelZoom={true}>
+      <MapContainer className={styles.map} center={mapPosition} zoom={8} scrollWheelZoom={true}>
         <TileLayer
           attribution='<a href="https://tomtom.com" target="_blank">&copy;  1992 - 2023 TomTom.</a> '
           url={`https://{s}.api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{y}.png?key=${MAP_TOKEN}`}
@@ -35,9 +41,37 @@ const Map: React.FC = () => {
             </Popup>
           </Marker>
         ))}
+        {(lat || lng) && <ChangeCenter position={mapPosition} />}
+        <ClickDetect />
       </MapContainer>
     </div>
   );
+};
+
+// cuctom component for changing position of map
+interface ChangeCenterProps {
+  position: LatLngTuple;
+}
+
+const ChangeCenter = ({ position }: ChangeCenterProps) => {
+  const map = useMap();
+
+  map.closePopup();
+  map.flyTo(position, 10);
+  return null;
+};
+
+const ClickDetect = () => {
+  const navigate = useNavigate();
+
+  useMapEvents({
+    click: (e) => {
+      const { lat, lng } = e.latlng;
+      navigate(`form?lat=${lat}&lng=${lng}`);
+    },
+  });
+
+  return null;
 };
 
 export default Map;
