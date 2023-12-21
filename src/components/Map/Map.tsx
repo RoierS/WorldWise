@@ -81,8 +81,10 @@ interface ChangeCenterProps {
 const ChangeCenter = ({ position }: ChangeCenterProps) => {
   const map = useMap();
 
-  map.closePopup();
-  map.flyTo(position, 10);
+  useEffect(() => {
+    map.closePopup();
+    map.flyTo(position, 10);
+  }, [map, position]);
 
   return null;
 };
