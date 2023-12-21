@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 
 import { LatLngTuple } from 'leaflet';
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from 'react-leaflet';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useCitiesProvider } from '@/hooks/useCitiesProvider';
 import { useGeolocation } from '@/hooks/useGeolocation';
 
+import useUrlPosition from '@/hooks/useUrlPosition';
 import Button from '@components/Button/Button';
 
 import styles from './Map.module.css';
@@ -17,16 +18,12 @@ const Map: React.FC = () => {
   const { cities } = useCitiesProvider();
   const [mapPosition, setMapPosition] = useState<LatLngTuple>([40, 0]);
   const [isPositionFound, setIsPositionFound] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [lat, lng] = useUrlPosition();
   const {
     isLoading: isLoadingPosition,
     position: geolocationPosition,
     getPosition,
   } = useGeolocation();
-
-  // current coordinates
-  const lat = Number(searchParams.get('lat'));
-  const lng = Number(searchParams.get('lng'));
 
   // move map when click on city in citylist
   useEffect(() => {
