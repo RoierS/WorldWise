@@ -41,26 +41,30 @@ const Map: React.FC = () => {
             </Popup>
           </Marker>
         ))}
+
         {(lat || lng) && <ChangeCenter position={mapPosition} />}
+
         <ClickDetect />
       </MapContainer>
     </div>
   );
 };
 
-// cuctom component for changing position of map
 interface ChangeCenterProps {
   position: LatLngTuple;
 }
 
+// custom component for changing position of map
 const ChangeCenter = ({ position }: ChangeCenterProps) => {
   const map = useMap();
 
   map.closePopup();
   map.flyTo(position, 10);
+
   return null;
 };
 
+// opens form when click on map
 const ClickDetect = () => {
   const navigate = useNavigate();
 
