@@ -5,6 +5,9 @@ import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from 're
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useCitiesProvider } from '@/hooks/useCitiesProvider';
+import { useGeolocation } from '@/hooks/useGeolocation';
+
+import Button from '@components/Button/Button';
 
 import styles from './Map.module.css';
 
@@ -12,9 +15,14 @@ const MAP_TOKEN = import.meta.env.VITE_MAP_TOKEN;
 
 const Map: React.FC = () => {
   const { cities } = useCitiesProvider();
-
   const [mapPosition, setMapPosition] = useState<LatLngTuple>([40, 0]);
+  const [isPositionFound, setIsPositionFound] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const {
+    isLoading: isLoadingPosition,
+    position: geolocationPosition,
+    getPosition,
+  } = useGeolocation();
 
   // current coordinates
   const lat = Number(searchParams.get('lat'));
@@ -23,10 +31,28 @@ const Map: React.FC = () => {
   // move map when click on city in citylist
   useEffect(() => {
     if (lat && lng) setMapPosition([lat, lng]);
+
+    return () => setIsPositionFound(false);
   }, [lat, lng]);
+
+  // sets map position depends on geolocation
+  useEffect(() => {
+    if (geolocationPosition) {
+      setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+      setIsPositionFound(true);
+    }
+
+    return () => setIsPositionFound(false);
+  }, [geolocationPosition]);
 
   return (
     <div className={styles.mapContainer}>
+      {!isPositionFound && (
+        <Button purpose="position" onClick={getPosition}>
+          {isLoadingPosition ? 'Loading...' : 'Use your position'}
+        </Button>
+      )}
+
       <MapContainer className={styles.map} center={mapPosition} zoom={8} scrollWheelZoom={true}>
         <TileLayer
           attribution='<a href="https://tomtom.com" target="_blank">&copy;  1992 - 2023 TomTom.</a> '
@@ -42,7 +68,7 @@ const Map: React.FC = () => {
           </Marker>
         ))}
 
-        {(lat || lng) && <ChangeCenter position={mapPosition} />}
+        <ChangeCenter position={mapPosition} />
 
         <ClickDetect />
       </MapContainer>

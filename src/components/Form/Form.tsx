@@ -32,7 +32,7 @@ const Form: React.FC = () => {
         <label htmlFor="cityname">City name</label>
         <input
           type="text"
-          id="cityName"
+          id="cityname"
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
