@@ -6,7 +6,9 @@ export const useCitiesProvider = () => {
   const context = useContext(CitiesContext);
 
   if (context === undefined) {
-    throw new Error('CitiesContext was used outside of the export default CitiesProvider');
+    throw new Error(
+      'CitiesContext was used outside of the export default CitiesProvider',
+    );
   }
 
   return context;

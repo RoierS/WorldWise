@@ -1,4 +1,6 @@
-export const formatDate = (date: string): string => {
+import { DateType } from '@/interfaces/City';
+
+export const formatDate = (date: DateType) => {
   return new Intl.DateTimeFormat('en', {
     day: 'numeric',
     month: 'long',

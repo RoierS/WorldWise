@@ -1,8 +1,8 @@
-import Spinner from '@/components/Spinner/Spinner';
 import { useCitiesProvider } from '@/hooks/useCitiesProvider';
 
 import CityItem from '@components/CityItem/CityItem';
 import Message from '@components/Message/Message';
+import Spinner from '@components/Spinner/Spinner';
 
 import styles from './CityList.module.css';
 
@@ -14,7 +14,9 @@ const CityList = () => {
   }
 
   if (!cities.length)
-    return <Message message="Add your first city by clicking on a city on the map" />;
+    return (
+      <Message message="Add your first city by clicking on a city on the map" />
+    );
 
   return (
     <ul className={styles.cityList}>

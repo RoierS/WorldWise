@@ -1,9 +1,10 @@
-import Spinner from '@/components/Spinner/Spinner';
 import { useCitiesProvider } from '@/hooks/useCitiesProvider';
 
 import { ICountry } from '@/interfaces/Country';
+
 import CountryItem from '@components/CountryItem/CountryItem';
 import Message from '@components/Message/Message';
+import Spinner from '@components/Spinner/Spinner';
 
 import styles from './CountryList.module.css';
 
@@ -22,7 +23,9 @@ const CountryList = () => {
   }
 
   if (!cities.length)
-    return <Message message="Add your first city by clicking on a city on the map" />;
+    return (
+      <Message message="Add your first city by clicking on a city on the map" />
+    );
 
   return (
     <ul className={styles.countryList}>

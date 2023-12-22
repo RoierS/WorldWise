@@ -17,7 +17,9 @@ const CityItem = ({ city }: ICityItemProps) => {
   return (
     <li>
       <Link
-        className={`${styles.cityItem} ${id === currentCity.id ? styles['cityItem--active'] : ''}`}
+        className={`${styles.cityItem} ${
+          id === currentCity.id ? styles['cityItem--active'] : ''
+        }`}
         to={`${id}?lat=${position.lat}&lng=${position.lng}`}
       >
         <span className={styles.emoji}>{emoji}</span>

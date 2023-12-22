@@ -9,11 +9,13 @@ import ButtonBack from '@components/ButtonBack/ButtonBack';
 import Spinner from '@components/Spinner/Spinner';
 
 import styles from './City.module.css';
+
 const City = () => {
+  const [isCurrentCityStale, setIsCurrentCityStale] = useState(true);
   const { id } = useParams();
   const { getCurrentCity, currentCity, isLoading } = useCitiesProvider();
-  const [isCurrentCityStale, setIsCurrentCityStale] = useState(true);
 
+  // get current city when changing the id by clicking the city in list
   useEffect(() => {
     if (id) getCurrentCity(id);
     setIsCurrentCityStale(false);
@@ -48,7 +50,11 @@ const City = () => {
 
       <div className={styles.row}>
         <h6>Learn more</h6>
-        <a href={`https://en.wikipedia.org/wiki/${cityName}`} target="_blank" rel="noreferrer">
+        <a
+          href={`https://en.wikipedia.org/wiki/${cityName}`}
+          target="_blank"
+          rel="noreferrer"
+        >
           Check out {cityName} on Wikipedia &rarr;
         </a>
       </div>
