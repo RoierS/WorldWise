@@ -13,7 +13,7 @@ const CityList = () => {
     return <Spinner />;
   }
 
-  if (!cities.length)
+  if (!cities.length && isLoading)
     return (
       <Message message="Add your first city by clicking on a city on the map" />
     );

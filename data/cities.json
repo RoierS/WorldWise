@@ -1,40 +1,40 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": 73930385
-    },
-    {
-      "cityName": "Madrid",
+      "cityName": "Peralejos",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
+      "date": "2023-12-22T11:57:31.482Z",
       "notes": "",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
+        "lat": 40.478292268560175,
+        "lng": -1.0025024414062502
       },
-      "id": 17806751
+      "id": 2
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "cityName": "Santa Eulalia",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-12-22T11:57:39.997Z",
+      "notes": "",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
+        "lat": 40.57954165275019,
+        "lng": -1.2208557128906252
       },
-      "id": 98443197
+      "id": 3
+    },
+    {
+      "cityName": "Langa de Duero",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-12-22T11:58:03.095Z",
+      "notes": "",
+      "position": {
+        "lat": 41.52400142852431,
+        "lng": -3.4304809570312504
+      },
+      "id": 4
     }
   ]
 }

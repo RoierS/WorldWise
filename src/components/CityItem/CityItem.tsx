@@ -1,3 +1,5 @@
+import { SyntheticEvent } from 'react';
+
 import { Link } from 'react-router-dom';
 
 import { formatDate } from '@/helpers/formatDate';
@@ -12,7 +14,15 @@ interface ICityItemProps {
 
 const CityItem = ({ city }: ICityItemProps) => {
   const { cityName, emoji, date, id, position } = city;
-  const { currentCity } = useCitiesProvider();
+  const { currentCity, deleteCity } = useCitiesProvider();
+
+  const handleDeleteCity = (e: SyntheticEvent) => {
+    e.preventDefault();
+
+    if (id) {
+      deleteCity(id);
+    }
+  };
 
   return (
     <li>
@@ -25,7 +35,9 @@ const CityItem = ({ city }: ICityItemProps) => {
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>{formatDate(date)}</time>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button className={styles.deleteBtn} onClick={handleDeleteCity}>
+          &times;
+        </button>
       </Link>
     </li>
   );
