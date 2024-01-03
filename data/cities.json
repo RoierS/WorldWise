@@ -1,76 +1,40 @@
 {
   "cities": [
     {
-      "cityName": "Soller",
+      "cityName": "Borja",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2023-12-22T17:06:51.351Z",
-      "notes": "",
+      "date": "2024-01-03T10:40:41.680Z",
+      "notes": "kk",
       "position": {
-        "lat": 39.76738084178371,
-        "lng": 2.711906433105469
+        "lat": 41.90329915269289,
+        "lng": -1.539459228515625
       },
-      "id": 11
+      "id": 17
     },
     {
-      "cityName": "Soller",
+      "cityName": "Montanejos",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2023-12-22T17:06:59.118Z",
+      "date": "2024-01-03T11:20:20.520Z",
       "notes": "",
       "position": {
-        "lat": 39.79818360561823,
-        "lng": 2.6947402954101567
+        "lat": 40.0602055157046,
+        "lng": -0.5589294433593751
       },
-      "id": 12
+      "id": 19
     },
     {
-      "cityName": "Escorca",
+      "cityName": "Cortes de Arenoso",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2023-12-22T17:07:26.221Z",
+      "date": "2024-01-03T11:37:20.550Z",
       "notes": "",
       "position": {
-        "lat": 39.787961519016065,
-        "lng": 2.780570983886719
+        "lat": 40.169429488274,
+        "lng": -0.5520629882812501
       },
-      "id": 13
-    },
-    {
-      "cityName": "Escorca",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-12-22T17:07:35.867Z",
-      "notes": "",
-      "position": {
-        "lat": 39.85072092501597,
-        "lng": 2.799797058105469
-      },
-      "id": 14
-    },
-    {
-      "cityName": "Visiedo",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-12-22T18:00:09.024Z",
-      "notes": "",
-      "position": {
-        "lat": 40.637925243274374,
-        "lng": -1.207122802734375
-      },
-      "id": 15
-    },
-    {
-      "cityName": "Figueroles",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-12-22T18:02:31.569Z",
-      "notes": "",
-      "position": {
-        "lat": 40.13269100586688,
-        "lng": -0.20874023437500003
-      },
-      "id": 16
+      "id": 20
     }
   ]
 }

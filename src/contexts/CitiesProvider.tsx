@@ -10,6 +10,7 @@ interface ICitiesContext {
   getCurrentCity: (id: string) => void;
   postNewCity: (city: ICity) => void;
   deleteCity: (id: number) => void;
+  error: string | Error;
 }
 
 interface AppState {
@@ -19,24 +20,32 @@ interface AppState {
   error: string | Error;
 }
 
+enum ActionTypes {
+  LOADING,
+  CITIES_LOADED,
+  CITY_LOADED,
+  CITY_CREATED,
+  CITY_DELETED,
+  REJECTED,
+}
+
 type AppAction =
-  | { type: 'loading' }
-  | { type: 'cities/loaded'; payload: ICity[] }
-  | { type: 'city/loaded'; payload: ICity }
+  | { type: ActionTypes.LOADING }
+  | { type: ActionTypes.CITIES_LOADED; payload: ICity[] }
+  | { type: ActionTypes.CITY_LOADED; payload: ICity }
   | {
-      type: 'city/created';
+      type: ActionTypes.CITY_CREATED;
       payload: ICity;
     }
   | {
-      type: 'city/deleted';
+      type: ActionTypes.CITY_DELETED;
       payload: number;
     }
-  | { type: 'rejected'; payload: string };
+  | { type: ActionTypes.REJECTED; payload: string };
 
 interface CitiesProviderProps {
   children: ReactNode;
 }
-
 const BASE_URL = 'http://localhost:9000';
 
 export const CitiesContext = createContext<ICitiesContext | undefined>(
@@ -52,39 +61,40 @@ const initialState = {
 
 const reducer = (state: AppState, action: AppAction) => {
   switch (action.type) {
-    case 'loading':
+    case ActionTypes.LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case 'cities/loaded':
+    case ActionTypes.CITIES_LOADED:
       return {
         ...state,
         isLoading: false,
         cities: action.payload,
       };
-    case 'city/loaded':
+    case ActionTypes.CITY_LOADED:
       return {
         ...state,
         isLoading: false,
         currentCity: action.payload,
       };
-    case 'city/created':
+    case ActionTypes.CITY_CREATED:
       return {
         ...state,
         isLoading: false,
         cities: [...state.cities, action.payload],
         currentCity: action.payload,
       };
-    case 'city/deleted':
+    case ActionTypes.CITY_DELETED:
       return {
         ...state,
         isLoading: false,
         cities: state.cities.filter(
           (city: ICity) => city.id !== action.payload,
         ),
+        currentCity: initialState.currentCity,
       };
-    case 'rejected':
+    case ActionTypes.REJECTED:
       return { ...state, isLoading: false, error: action.payload };
 
     default:
@@ -93,14 +103,14 @@ const reducer = (state: AppState, action: AppAction) => {
 };
 
 const CitiesProvider = ({ children }: CitiesProviderProps) => {
-  const [{ cities, isLoading, currentCity }, dispatch] = useReducer(
+  const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
     reducer,
     initialState,
   );
 
   // post new city object to server, update cities state and current city state
   const postNewCity = async (newCity: ICity) => {
-    dispatch({ type: 'loading' });
+    dispatch({ type: ActionTypes.LOADING });
     try {
       const res = await fetch(`${BASE_URL}/cities`, {
         method: 'POST',
@@ -110,52 +120,54 @@ const CitiesProvider = ({ children }: CitiesProviderProps) => {
         },
       });
       const data = await res.json();
-      dispatch({ type: 'city/created', payload: data });
+      dispatch({ type: ActionTypes.CITY_CREATED, payload: data });
     } catch (error) {
       const message = checkError(error);
-      dispatch({ type: 'rejected', payload: message });
+      dispatch({ type: ActionTypes.REJECTED, payload: message });
     }
   };
 
   // delete city from server and update list of cities
   const deleteCity = async (id: number) => {
-    dispatch({ type: 'loading' });
+    dispatch({ type: ActionTypes.LOADING });
     try {
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: 'DELETE',
       });
-      dispatch({ type: 'city/deleted', payload: id });
+      dispatch({ type: ActionTypes.CITY_DELETED, payload: id });
     } catch (error) {
       const message = checkError(error);
-      dispatch({ type: 'rejected', payload: message });
+      dispatch({ type: ActionTypes.REJECTED, payload: message });
     }
   };
 
   // fetch currentCity from server and set currentCity state
   const getCurrentCity = async (id: string) => {
-    dispatch({ type: 'loading' });
+    if (Number(id) === currentCity.id) return;
+
+    dispatch({ type: ActionTypes.LOADING });
     try {
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
-      dispatch({ type: 'city/loaded', payload: data });
+      dispatch({ type: ActionTypes.CITY_LOADED, payload: data });
     } catch (error) {
       const message = checkError(error);
-      dispatch({ type: 'rejected', payload: message });
+      dispatch({ type: ActionTypes.REJECTED, payload: message });
     }
   };
 
   // fetch cities from server and set cities state
   useEffect(() => {
     const fetchCities = async () => {
-      dispatch({ type: 'loading' });
+      dispatch({ type: ActionTypes.LOADING });
       try {
         const res = await fetch(`${BASE_URL}/cities`);
         const data: ICity[] = await res.json();
 
-        dispatch({ type: 'cities/loaded', payload: data });
+        dispatch({ type: ActionTypes.CITIES_LOADED, payload: data });
       } catch (error) {
         const message = checkError(error);
-        dispatch({ type: 'rejected', payload: message });
+        dispatch({ type: ActionTypes.REJECTED, payload: message });
       }
     };
 
@@ -171,6 +183,7 @@ const CitiesProvider = ({ children }: CitiesProviderProps) => {
         getCurrentCity,
         postNewCity,
         deleteCity,
+        error,
       }}
     >
       {children}
