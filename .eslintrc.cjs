@@ -55,6 +55,7 @@ module.exports = {
     'react/jsx-uses-react': ['off'],
     'react/jsx-props-no-spreading': ['off'],
     'react/no-unescaped-entities': ['off'],
+    'react/prop-types': 'off',
     '@typescript-eslint/naming-convention': [
       'error',
       {

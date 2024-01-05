@@ -13,6 +13,7 @@ import Login from './pages/Login/Login';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import Pricing from './pages/Pricing/Pricing';
 import Product from './pages/Product/Product';
+import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute';
 
 const App: React.FC = () => {
   return (
@@ -24,7 +25,14 @@ const App: React.FC = () => {
             <Route path="product" element={<Product />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="login" element={<Login />} />
-            <Route path="app" element={<AppLayOut />}>
+            <Route
+              path="app"
+              element={
+                <ProtectedRoute>
+                  <AppLayOut />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<Navigate to="cities" replace={true} />} />
 
               <Route path="cities" element={<CityList />} />
