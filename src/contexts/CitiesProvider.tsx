@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useEffect, useReducer } from 'react';
 
 import { checkError } from '@/helpers/checkError';
+import { useAuthProvider } from '@/hooks/useAuthProvider';
 import { ICity } from '@/interfaces/City';
 
 interface ICitiesContext {
@@ -108,6 +109,8 @@ const CitiesProvider = ({ children }: CitiesProviderProps) => {
     initialState,
   );
 
+  const { isAuthenticated } = useAuthProvider();
+
   // post new city object to server, update cities state and current city state
   const postNewCity = async (newCity: ICity) => {
     dispatch({ type: ActionTypes.LOADING });
@@ -171,8 +174,8 @@ const CitiesProvider = ({ children }: CitiesProviderProps) => {
       }
     };
 
-    fetchCities();
-  }, []);
+    if (isAuthenticated) fetchCities();
+  }, [isAuthenticated]);
 
   return (
     <CitiesContext.Provider
