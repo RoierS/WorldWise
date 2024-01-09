@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useEffect, useReducer } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useEffect,
+  useReducer,
+} from 'react';
 
 import { checkError } from '@/helpers/checkError';
 import { useAuthProvider } from '@/hooks/useAuthProvider';
@@ -145,19 +151,22 @@ const CitiesProvider = ({ children }: CitiesProviderProps) => {
   };
 
   // fetch currentCity from server and set currentCity state
-  const getCurrentCity = async (id: string) => {
-    if (Number(id) === currentCity.id) return;
+  const getCurrentCity = useCallback(
+    async (id: string) => {
+      if (Number(id) === currentCity.id) return;
 
-    dispatch({ type: ActionTypes.LOADING });
-    try {
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
-      dispatch({ type: ActionTypes.CITY_LOADED, payload: data });
-    } catch (error) {
-      const message = checkError(error);
-      dispatch({ type: ActionTypes.REJECTED, payload: message });
-    }
-  };
+      dispatch({ type: ActionTypes.LOADING });
+      try {
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json();
+        dispatch({ type: ActionTypes.CITY_LOADED, payload: data });
+      } catch (error) {
+        const message = checkError(error);
+        dispatch({ type: ActionTypes.REJECTED, payload: message });
+      }
+    },
+    [currentCity.id],
+  );
 
   // fetch cities from server and set cities state
   useEffect(() => {

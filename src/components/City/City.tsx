@@ -21,8 +21,7 @@ const City = () => {
     setIsCurrentCityStale(false);
 
     return () => setIsCurrentCityStale(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [getCurrentCity, id]);
 
   const { cityName, emoji, date, notes } = currentCity;
 
