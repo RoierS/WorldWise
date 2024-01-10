@@ -1,4 +1,4 @@
-import { DateType } from '@/interfaces/City';
+import { DateType } from '@/interfaces/DateType';
 
 export const formatDate = (date: DateType) => {
   return new Intl.DateTimeFormat('en', {
