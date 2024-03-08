@@ -5,13 +5,15 @@ import CityList from '@/components/CityList/CityList';
 import CountryList from '@/components/CountryList/CountryList';
 import Form from '@/components/Form/Form';
 
+import AppLayout from '@/pages/AppLayout/AppLayOut';
+import Homepage from '@/pages/Homepage/Homepage';
+
+import Login from '@/pages/Login/Login';
+import PageNotFound from '@/pages/PageNotFound/PageNotFound';
+import Pricing from '@/pages/Pricing/Pricing';
+import Product from '@/pages/Product/Product';
+
 import CitiesProvider from './contexts/CitiesProvider';
-import AppLayOut from './pages/AppLayout/AppLayout';
-import Homepage from './pages/Homepage/Homepage';
-import Login from './pages/Login/Login';
-import PageNotFound from './pages/PageNotFound/PageNotFound';
-import Pricing from './pages/Pricing/Pricing';
-import Product from './pages/Product/Product';
 
 const App: React.FC = () => {
   return (
@@ -22,7 +24,7 @@ const App: React.FC = () => {
           <Route path="product" element={<Product />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="login" element={<Login />} />
-          <Route path="app" element={<AppLayOut />}>
+          <Route path="app" element={<AppLayout />}>
             <Route index element={<Navigate to="cities" replace={true} />} />
 
             <Route path="cities" element={<CityList />} />
