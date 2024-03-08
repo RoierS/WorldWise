@@ -24,6 +24,7 @@ const MAP_TOKEN = import.meta.env.VITE_MAP_TOKEN;
 const Map: React.FC = () => {
   const [mapPosition, setMapPosition] = useState<LatLngTuple>([40, 0]);
   const [isPositionFound, setIsPositionFound] = useState(false);
+  const [isDefault, setIsDefault] = useState(true);
 
   const { cities } = useCitiesProvider();
   const [lat, lng] = useUrlPosition();
@@ -58,17 +59,41 @@ const Map: React.FC = () => {
         </Button>
       )}
 
+      <div className={styles.viewMode} onClick={() => setIsDefault(!isDefault)}>
+        {isDefault ? (
+          <img src="/satellite-icon.svg" alt="satellite view" />
+        ) : (
+          <img src="/default-map-icon.svg" alt="default view" />
+        )}
+      </div>
+
       <MapContainer
         className={styles.map}
         center={mapPosition}
         zoom={8}
         scrollWheelZoom={true}
       >
-        <TileLayer
-          attribution='<a href="https://tomtom.com" target="_blank">&copy;  1992 - 2023 TomTom.</a> '
-          url={`https://{s}.api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{y}.png?key=${MAP_TOKEN}`}
-          subdomains="abcd"
-        />
+        {isDefault ? (
+          <TileLayer
+            attribution='<a href="https://tomtom.com" target="_blank">&copy;  1992 - 2023 TomTom.</a> '
+            url={`https://{s}.api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{y}.png?key=${MAP_TOKEN}&tileSize=512`}
+            subdomains="abcd"
+          />
+        ) : (
+          <>
+            <TileLayer
+              attribution='<a href="https://tomtom.com" target="_blank">&copy;  1992 - 2023 TomTom.</a> '
+              url={`https://{s}.api.tomtom.com/map/1/tile/sat/main/{z}/{x}/{y}.jpg?key=${MAP_TOKEN}&tileSize=512`}
+              subdomains="abcd"
+            />
+            <TileLayer
+              attribution='<a href="https://tomtom.com" target="_blank">&copy;  1992 - 2023 TomTom.</a> '
+              url={`https://{s}.api.tomtom.com/map/1/tile/labels/main/{z}/{x}/{y}.png?key=${MAP_TOKEN}&tileSize=512`}
+              subdomains="abcd"
+            />
+          </>
+        )}
+
         {cities.map((city) => (
           <Marker
             position={[city.position.lat, city.position.lng]}

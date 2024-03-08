@@ -4,7 +4,11 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   purpose: string;
 }
 
-const Button = ({ children, onClick, purpose = 'primary' }: IButton) => {
+const Button: React.FC<IButton> = ({
+  children,
+  onClick,
+  purpose = 'primary',
+}) => {
   return (
     <button onClick={onClick} className={`${styles.btn} ${styles[purpose]}`}>
       {children}

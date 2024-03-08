@@ -1,40 +1,40 @@
 {
   "cities": [
     {
-      "cityName": "Peralejos",
+      "cityName": "Borja",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2023-12-22T11:57:31.482Z",
-      "notes": "",
+      "date": "2024-01-03T10:40:41.680Z",
+      "notes": "kk",
       "position": {
-        "lat": 40.478292268560175,
-        "lng": -1.0025024414062502
+        "lat": 41.90329915269289,
+        "lng": -1.539459228515625
       },
-      "id": 2
+      "id": 17
     },
     {
-      "cityName": "Santa Eulalia",
+      "cityName": "Montanejos",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2023-12-22T11:57:39.997Z",
+      "date": "2024-01-03T11:20:20.520Z",
       "notes": "",
       "position": {
-        "lat": 40.57954165275019,
-        "lng": -1.2208557128906252
+        "lat": 40.0602055157046,
+        "lng": -0.5589294433593751
       },
-      "id": 3
+      "id": 19
     },
     {
-      "cityName": "Langa de Duero",
+      "cityName": "Cortes de Arenoso",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2023-12-22T11:58:03.095Z",
+      "date": "2024-01-03T11:37:20.550Z",
       "notes": "",
       "position": {
-        "lat": 41.52400142852431,
-        "lng": -3.4304809570312504
+        "lat": 40.169429488274,
+        "lng": -0.5520629882812501
       },
-      "id": 4
+      "id": 20
     }
   ]
 }

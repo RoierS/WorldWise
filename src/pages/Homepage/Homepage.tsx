@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 
+import { useAuthProvider } from '@/hooks/useAuthProvider';
 import PageNav from '@components/PageNav/PageNav';
 
 import styles from './Homepage.module.css';
 
 const Homepage: React.FC = () => {
+  const { isAuthenticated } = useAuthProvider();
+
   return (
     <main className={styles.homepage}>
       <PageNav />
@@ -19,7 +22,7 @@ const Homepage: React.FC = () => {
           of. Never forget your wonderful experiences, and show your friends how
           you have wandered the world.
         </h2>
-        <Link to="/app" className="cta">
+        <Link to={isAuthenticated ? './app' : './login'} className="cta">
           Start tracking now
         </Link>
       </section>

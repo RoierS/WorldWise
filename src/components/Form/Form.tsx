@@ -64,7 +64,7 @@ const Form: React.FC = () => {
         const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
         const { countryCode, city, countryName } = await res.json();
 
-        if (!countryCode) {
+        if (!countryCode || !city) {
           throw new Error(
             'Thats does not seem to be a city. Click somewhere else please 🤔',
           );
