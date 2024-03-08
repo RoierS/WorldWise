@@ -14,16 +14,13 @@ const Product: React.FC = () => {
         <div>
           <h2>About WorldWide.</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
-            dicta illum vero culpa cum quaerat architecto sapiente eius non
-            soluta, molestiae nihil laborum, placeat debitis, laboriosam at fuga
-            perspiciatis?
+            Embark on a journey with WorldWise, your passport to unparalleled
+            adventures across the globe. Whether you're a seasoned traveler or
+            just starting your expedition, WorldWise is here to elevate your
+            experience. Dive into a world of discovery, where every destination
+            holds a story and every moment is a treasure.
           </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis
-            doloribus libero sunt expedita ratione iusto, magni, id sapiente
-            sequi officiis et.
-          </p>
+          <p>Join us and unlock a universe of possibilities with WorldWise.</p>
         </div>
       </section>
     </main>
