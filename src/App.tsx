@@ -6,19 +6,19 @@ import City from '@/components/City/City';
 import CityList from '@/components/CityList/CityList';
 import CountryList from '@/components/CountryList/CountryList';
 import Form from '@/components/Form/Form';
+import SpinnerFullPage from '@/components/SpinnerFullPage/SpinnerFullPage';
 
-import SpinnerFullPage from './components/SpinnerFullPage/SpinnerFullPage';
-import AuthProvider from './contexts/AuthContext';
-import CitiesProvider from './contexts/CitiesProvider';
+import AuthProvider from '@/contexts/AuthContext';
+import CitiesProvider from '@/contexts/CitiesProvider';
 
-import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from '@/pages/ProtectedRoute/ProtectedRoute';
 
-const Homepage = lazy(() => import('./pages/Homepage/Homepage'));
-const AppLayout = lazy(() => import('./pages/AppLayout/AppLayout'));
-const Login = lazy(() => import('./pages/Login/Login'));
-const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
-const Pricing = lazy(() => import('./pages/Pricing/Pricing'));
-const Product = lazy(() => import('./pages/Product/Product'));
+const Homepage = lazy(() => import('@/pages/Homepage/Homepage'));
+const AppLayout = lazy(() => import('@/pages/AppLayout/AppLayOut'));
+const Login = lazy(() => import('@/pages/Login/Login'));
+const PageNotFound = lazy(() => import('@/pages/PageNotFound/PageNotFound'));
+const Pricing = lazy(() => import('@/pages/Pricing/Pricing'));
+const Product = lazy(() => import('@/pages/Product/Product'));
 
 const App: React.FC = () => {
   return (
