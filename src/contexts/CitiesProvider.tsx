@@ -17,7 +17,8 @@ interface CitiesProviderProps {
   children: ReactNode;
 }
 
-const BASE_URL = 'http://localhost:9000';
+// const BASE_URL = 'http://localhost:9000'; // for local
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const CitiesContext = createContext<ICitiesContext | undefined>(
   undefined,
