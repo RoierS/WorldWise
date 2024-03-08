@@ -14,7 +14,7 @@ import CitiesProvider from './contexts/CitiesProvider';
 import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute';
 
 const Homepage = lazy(() => import('./pages/Homepage/Homepage'));
-const AppLayOut = lazy(() => import('./pages/AppLayout/AppLayout'));
+const AppLayout = lazy(() => import('./pages/AppLayout/AppLayout'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Pricing = lazy(() => import('./pages/Pricing/Pricing'));
@@ -35,7 +35,7 @@ const App: React.FC = () => {
                 path="app"
                 element={
                   <ProtectedRoute>
-                    <AppLayOut />
+                    <AppLayout />
                   </ProtectedRoute>
                 }
               >
