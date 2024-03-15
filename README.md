@@ -5,9 +5,10 @@
   WorldWise is a React application designed to assist you in tracking your travels and creating a visual log of your adventures. With a user-friendly interface, it enables you to reminisce about your memorable experiences and share your global explorations with friends.
   </p>
   
-  [World Wise](https://worldwiseproject.netlify.app)
+  <img src="/public/icon.png" alt="logo" width="20" height="auto" /> [World Wise](https://worldwiseproject.netlify.app)
   <div align='center'>
-    <img src="" alt="app view" width="100%" height="auto" />
+    <img src="https://github.com/RoierS/WorldWise/assets/111195111/3554efc4-7b40-46bd-85a7-83dcbff8a729" alt="app view" width="600" height="auto" />
+    
   </div>
 </div>
 <br/>
